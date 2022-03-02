@@ -63,7 +63,7 @@ do this:
 ```bash
 mkdir -p workshop
 cd workshop
-git clone https://github.com/davewadestein/terraform-workshop .
+git clone https://github.com/sridhar09/terraform-workshop .
 ```
 
 ## Set up your environment credentials to connect to AWS
