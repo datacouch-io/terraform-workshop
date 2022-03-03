@@ -1,5 +1,10 @@
+locals {
+  base_cidr = "10.0.0.0"
+  vpc_cidr  = "${local.base_cidr}/16"
+}
+
 resource "aws_vpc" "demo_vpc" {
-  cidr_block = "10.0.0.0/16"
+  cidr_block = local.vpc_cidr
 
   tags = {
     Name = "tf-example"
@@ -25,9 +30,24 @@ resource "aws_network_interface" "demo_eni" {
   }
 }
 
+data "aws_ami" "latest-ubuntu" {
+  most_recent = true
+  owners      = ["099720109477"]
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+}
+
 resource "aws_instance" "foo" {
-  ami           = "ami-09a2a0f7d2db8baca"
-  instance_type = "t2.micro"
+  ami           = data.aws_ami.latest-ubuntu.image_id
+  instance_type = var.instance_type
 
   network_interface {
     network_interface_id = aws_network_interface.demo_eni.id
