@@ -1,7 +1,3 @@
-variable "aws_region" {
-  description = "The region where resources should live"
-}
-
 variable "student_alias" {
   description = "Your student alias"
 }
