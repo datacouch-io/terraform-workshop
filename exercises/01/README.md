@@ -19,10 +19,17 @@ Inside, you will see the following:
 # Declare the provider being used, in this case it's AWS.
 # This provider supports setting the provider version, AWS credentials as well as the region.
 # It can also pull credentials and the region to use from environment variables, which we have set, so we'll use those
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "~> 3.0"
+    }
+  }
+}
+
 provider "aws" {
-  version = "~> 3.0"
-  access_key = <your-access-key-here>
-  secret_key = <your-secret-key-here>
+  # Configuration options
 }
 
 # declare a resource stanza so we can create something.
