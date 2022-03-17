@@ -1,4 +1,4 @@
-# Exercise #2: Using Variables
+# Exercise 2: Using Variables
 
 For this exercise, we will revisit the terraform project from the previous exercise. There are a few ways 
 to accomplish our goal in this exercise, so try doing each one independently. If you get stuck or have
@@ -163,9 +163,7 @@ the standard variable you might be working with in Python, for example.  Here is
 
 ```hcl
 locals {
-  title = "Student"
-  name = "${var.student_alias}"
-  name_and_title = "${local.name} - ${local.title}"
+  bucket_name = "sm-di-${var.student_alias}"
 }
 ```
 
