@@ -189,5 +189,7 @@ resource "aws_s3_bucket_object" "user_student_alias_object" {
 }
 ```
 
+
+Pass the `student_alias` variable using your preferred method & run a `terraform plan`
 This is where we'll stop for now. We'll begin actually working with applying these plans in our next exercise.
 
