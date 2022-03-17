@@ -24,13 +24,24 @@ variable "student_alias" {
 outputs, etc. into one file, but it's considered best practice to maintain different files for variables,
 outputs, and resources.*
 
+Update your `main.tf` file as:
+
+```hcl
+# declare a resource stanza so we can create something.
+resource "aws_s3_bucket_object" "user_student_alias_object" {
+  bucket  = "sm-di-${var.student_alias}"
+  key     = "student.alias"
+  content = "This bucket is reserved for ${var.student_alias}"
+}
+```
+
 The name of the variable above would be `student_alias`.
 
 The possible properties of a variable:
 
 1. `default`: allows for setting a default value, otherwise terraform requires it to be set:
     * via the CLI (`-var student_alias=my-alias`), 
-    * defined in a *.tfvars file
+    * defined in a *.tfvars file (`-var-file filepath`)
     * defined in an environment variable like `TF_VAR_[variable name]`
     * or it will prompt for the input
 2. `description`: a useful descriptor for the variable
@@ -164,6 +175,17 @@ the standard variable you might be working with in Python, for example.  Here is
 ```hcl
 locals {
   bucket_name = "sm-di-${var.student_alias}"
+}
+```
+
+Update your `main.tf` file as:
+
+```hcl
+# declare a resource stanza so we can create something.
+resource "aws_s3_bucket_object" "user_student_alias_object" {
+  bucket  = local.bucket_name
+  key     = "student.alias"
+  content = "This bucket is reserved for ${var.student_alias}"
 }
 ```
 
