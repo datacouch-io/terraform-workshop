@@ -25,20 +25,9 @@ provider "aws" {
 
 # declare a resource stanza so we can create something.
 resource "aws_s3_bucket_object" "user_student_alias_object" {
-  bucket  = "sm-di-${var.student_alias}"
+  bucket  = "sm-di-<your-student-alias-here>"
   key     = "student.alias"
   content = "This bucket is reserved for ${var.student_alias}"
-}
-```
-
-### variables.tf
-
-Now look into the "variables.tf" file.  You should see this:
-
-```hcl
-# Declare a variable so we can use it
-variable "student_alias" {
-  description = "Your student alias"
 }
 ```
 
