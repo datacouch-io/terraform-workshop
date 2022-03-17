@@ -92,8 +92,13 @@ The init method picked up on the fact that we had a reference to AWS resources i
 the AWS provider
 
 ```hcl
-provider "aws" {
-  version = "~> 3.0" # meaning any non-beta version >= 3.0 and < 4.0
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "~> 3.0"
+    }
+  }
 }
 ```
 
