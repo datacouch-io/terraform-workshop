@@ -1,4 +1,4 @@
-# Exercise #3: Plans and Applies
+# Exercise 3: Plans and Applies
 
 So now we are actually going to get into it and create some infrastructure! For this exercise, we are going to:
 
