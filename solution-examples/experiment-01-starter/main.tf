@@ -12,14 +12,14 @@ provider "aws" {
 }
 
 data "aws_ami" "ubuntu" {
-  # Find the most recent Ubuntu image, as we did in the notes
+  # Find the most recent Ubuntu image
 }
 
 resource "aws_security_group" "nginx" {
   name        = "nginx_firewall"
   description = "Firewall for the nginx-server"
 
-  # you'll need to set up the allowed traffic in and out
+  # you'll need to set up the allowed traffic in and out (Port 80 Specially)
 }
 
 resource "aws_instance" "nginx_server" {
