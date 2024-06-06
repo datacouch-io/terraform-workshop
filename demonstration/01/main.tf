@@ -14,7 +14,7 @@ resource "aws_vpc" "demo_vpc" {
 resource "aws_subnet" "demo_subnet" {
   vpc_id            = aws_vpc.demo_vpc.id
   cidr_block        = "10.0.0.0/24"
-  availability_zone = "eu-west-2a"
+  availability_zone = "us-west-2a"
 
   tags = {
     Name = "tf-example"
@@ -30,13 +30,13 @@ resource "aws_network_interface" "demo_eni" {
   }
 }
 
-data "aws_ami" "latest-ubuntu" {
+data "aws_ami" "latest_ubuntu" {
   most_recent = true
   owners      = ["099720109477"]
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-*-amd64-server-*"]
   }
 
   filter {
@@ -46,11 +46,15 @@ data "aws_ami" "latest-ubuntu" {
 }
 
 resource "aws_instance" "foo" {
-  ami           = data.aws_ami.latest-ubuntu.image_id
+  ami           = data.aws_ami.latest_ubuntu.image_id
   instance_type = var.instance_type
 
   network_interface {
     network_interface_id = aws_network_interface.demo_eni.id
     device_index         = 0
+  }
+
+  tags = {
+    Name = "tf-example-instance"
   }
 }
